@@ -52,3 +52,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ('username', 'email')
         exclude = ('password1', 'password2')
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email').lower()
+        
+        if User.objects.filter(email=email).exclude(id=self.instance.id).exists() or len(email)>254:
+            raise forms.ValidationError('Email already in user or is too long')
+        
+        return email

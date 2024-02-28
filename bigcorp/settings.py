@@ -1,6 +1,13 @@
+import environ
+
+
 from pathlib import Path
 
+# Initialise environment variables
+env = environ.Env()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env()
 
 SECRET_KEY = 'django-insecure-ab(0(c_7wnde9iag%@9nldv@5x064ra6zg9_i5r3pj4w%a*-ne'
 
@@ -156,3 +163,7 @@ EMAIL_HOST_USER = 'abdullayev.dima7080@gmail.com'
 EMAIL_HOST_PASSWORD ='haur jqur hpkd yvir'  # os.environ['password_key'] suggested
 EMAIL_USE_TLS = True
 
+
+STRIPE_PUBLISHABLE_KEY = env('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_API_VERSION = env('STRIPE_API_VERSION')
