@@ -28,6 +28,7 @@ class Order(models.Model):
     amount = models.DecimalField(max_digits=9, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return "Order " + str(self.id)
@@ -42,7 +43,7 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2)
     quantity = models.IntegerField(default=1)
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True)
+    User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return "OrderItem" + str(self.id)
